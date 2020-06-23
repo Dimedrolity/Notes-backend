@@ -20,6 +20,8 @@ namespace Notes
             services.AddDbContext<NotesDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddControllers();
+            
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +33,8 @@ namespace Notes
             }
 
             app.UseRouting();
+            
+            app.UseCors(builder => builder.WithOrigins("http://localhost:8080"));
             
             app.UseEndpoints(endpoints =>
             {
