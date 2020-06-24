@@ -69,18 +69,18 @@ namespace Notes.Controllers
             _db.SaveChanges();
         }
 
-        [HttpGet("by-substring")]
+        [HttpGet("contains")]
         public IEnumerable<Note> GetBySubstring()
         {
-            Console.WriteLine("обрабатываю запрос api/notes/by-substring");
-
+            Console.WriteLine("обрабатываю запрос api/notes/contains с пустой строкой");
+        
             return _db.GetAllNotesSortedByDateOfLastChange();
         }
 
-        [HttpGet("by-substring/{substring}")]
+        [HttpGet("contains/{substring}")]
         public IEnumerable<Note> GetBySubstring(string substring)
         {
-            Console.WriteLine($"обрабатываю HttpGet-запрос api/notes/by-substring/{substring}");
+            Console.WriteLine($"обрабатываю HttpGet-запрос api/notes/contains/{substring}");
 
             var lowerSubstring = substring.ToLower();
 

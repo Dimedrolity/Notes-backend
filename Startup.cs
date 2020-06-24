@@ -20,7 +20,7 @@ namespace Notes
             services.AddDbContext<NotesDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddControllers();
-            
+
             services.AddCors();
         }
 
@@ -33,12 +33,13 @@ namespace Notes
             }
 
             app.UseRouting();
-            
+
             app.UseCors(builder => builder.WithOrigins("http://localhost:8080").AllowAnyMethod());
-            
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello 123!"); });
+                endpoints.MapGet("/",
+                    async context => { await context.Response.WriteAsync("Server is running"); });
                 endpoints.MapControllers();
             });
         }
