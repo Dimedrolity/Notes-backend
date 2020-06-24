@@ -34,7 +34,7 @@ namespace Notes
 
             app.UseRouting();
             
-            app.UseCors(builder => builder.WithOrigins("http://localhost:8080"));
+            app.UseCors(builder => builder.WithOrigins("http://localhost:8080").AllowAnyMethod());
             
             app.UseEndpoints(endpoints =>
             {
