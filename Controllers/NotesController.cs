@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Notes.DAL;
 using Notes.DAL.Entities;
+using Notes.DTO;
 
 namespace Notes.Controllers
 {
@@ -19,7 +20,7 @@ namespace Notes.Controllers
         }
 
         [HttpGet("")]
-        public IEnumerable<Note> GetAllNotes()
+        public IEnumerable<NoteDto> GetAllNotes()
         {
             Console.WriteLine("обрабатываю HttpGet-запрос api/notes");
 
@@ -40,10 +41,10 @@ namespace Notes.Controllers
             _db.SaveChanges();
         }
 
-        [HttpPut("change")]
+        [HttpPut("edit")]
         public void ChangeNote([FromForm] Note noteFromClient)
         {
-            Console.WriteLine("обрабатываю HttpPut-запрос api/notes/change, входные данные: \n" +
+            Console.WriteLine("обрабатываю HttpPut-запрос api/notes/edit, входные данные: \n" +
                               $"Id='{noteFromClient.Id}', " +
                               $"Title='{noteFromClient.Title}', " +
                               $"Content='{noteFromClient.Content}'");
@@ -70,15 +71,15 @@ namespace Notes.Controllers
         }
 
         [HttpGet("contains")]
-        public IEnumerable<Note> GetBySubstring()
+        public IEnumerable<NoteDto> GetBySubstring()
         {
-            Console.WriteLine("обрабатываю запрос api/notes/contains с пустой строкой");
+            Console.WriteLine("обрабатываю HttpGet-запрос api/notes/contains с пустой строкой");
         
             return _db.GetAllNotesSortedByDateOfLastChange();
         }
 
         [HttpGet("contains/{substring}")]
-        public IEnumerable<Note> GetBySubstring(string substring)
+        public IEnumerable<NoteDto> GetBySubstring(string substring)
         {
             Console.WriteLine($"обрабатываю HttpGet-запрос api/notes/contains/{substring}");
 

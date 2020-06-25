@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.DAL.Entities;
 using System.Linq;
+using Notes.DTO;
 
 namespace Notes.DAL
 {
@@ -14,10 +15,10 @@ namespace Notes.DAL
         {
         }
 
-        public IEnumerable<Note> GetAllNotesSortedByDateOfLastChange()
+        public IEnumerable<NoteDto> GetAllNotesSortedByDateOfLastChange()
         {
             //сначала более поздние (по дате изменения)
-            return Notes.OrderByDescending(note => note.DateOfLastChange);
+            return Notes.OrderByDescending(note => note.DateOfLastChange).Select(note => new NoteDto(note));
         }
     }
 }

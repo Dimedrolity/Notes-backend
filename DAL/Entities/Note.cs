@@ -13,11 +13,6 @@ namespace Notes.DAL.Entities
         {
         }
 
-        public Note(string content)
-        {
-            Content = content;
-        }
-
         public Note(string? title, string content)
         {
             Title = title;
